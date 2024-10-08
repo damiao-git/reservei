@@ -43,19 +43,49 @@ public class RaceController {
     public ResponseEntity<Object> getUmSo(@PathVariable(value = "id") Integer id){
 
         Optional<Race> race = raceRepository.findById(id);
-        ResponseEntity<Object> response = new ResponseEntity<Object>(HttpStatus.OK);
-
 
         if(race.isEmpty()){
 
-            Map<String, String> response2 = new HashMap<>();
-            response2.put("mensagem", "Nao foi encontrado com sucesso!");
+            Map<String, String> response = new HashMap<>();
+            response.put("mensagem", "Nao foi encontrado com sucesso!");
 
-            return new ResponseEntity<>(response2, HttpStatus.OK);
+            return new ResponseEntity<>(response, HttpStatus.OK);
         }
             return ResponseEntity.status(HttpStatus.OK).body(raceRepository.findById(id));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateRace(@PathVariable(value = "id") Integer id, @RequestBody RaceRecordDto raceRecordDto){
+        Optional<Race> raceOptional = raceRepository.findById(id);
+
+        if(raceOptional.isEmpty()){
+            Map<String, String> response = new HashMap<>();
+            response.put("mensagem", "Nao foi encontrado com sucesso!");
+
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
+        Race race = raceOptional.get();
+
+        BeanUtils.copyProperties(raceRecordDto, race);
+
+
+        return ResponseEntity.status(HttpStatus.OK).body(raceRepository.save(race));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteRace(@PathVariable(value = "id") Integer id){
+
+        Optional<Race> race = raceRepository.findById(id);
+
+        if(race.isEmpty()){
+            Map<String, String> response = new HashMap<>();
+            response.put("mensagem", "Nao foi encontrado com sucesso!");
+
+            return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+        }
+        raceRepository.delete(race.get());
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 
 
 }
