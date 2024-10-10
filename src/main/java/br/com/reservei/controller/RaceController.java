@@ -47,7 +47,7 @@ public class RaceController {
         if(race.isEmpty()){
 
             Map<String, String> response = new HashMap<>();
-            response.put("mensagem", "Nao foi encontrado com sucesso!");
+            response.put("mensagem", "Nao foi encontrado!");
 
             return new ResponseEntity<>(response, HttpStatus.OK);
         }
@@ -60,7 +60,7 @@ public class RaceController {
 
         if(raceOptional.isEmpty()){
             Map<String, String> response = new HashMap<>();
-            response.put("mensagem", "Nao foi encontrado com sucesso!");
+            response.put("mensagem", "Nao foi encontrado!");
 
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
@@ -79,7 +79,7 @@ public class RaceController {
 
         if(race.isEmpty()){
             Map<String, String> response = new HashMap<>();
-            response.put("mensagem", "Nao foi encontrado com sucesso!");
+            response.put("mensagem", "Nao foi encontrado!");
 
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
