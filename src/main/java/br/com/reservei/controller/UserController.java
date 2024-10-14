@@ -1,6 +1,6 @@
 package br.com.reservei.controller;
 
-import br.com.reservei.entities.User;
+import br.com.reservei.entity.User;
 import br.com.reservei.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
