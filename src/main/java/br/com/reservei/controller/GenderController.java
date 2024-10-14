@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/gender")
+@RequestMapping("/api/gender")
 public class GenderController {
     @Autowired
     GenderRepository genderRepository;

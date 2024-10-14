@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Optional;
 
 
-@RequestMapping(value = "/race")
+@RequestMapping(value = "/api/race")
 @RestController
 public class RaceController {
 

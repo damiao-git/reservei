@@ -1,7 +1,7 @@
 package br.com.reservei.service;
 
 
-import br.com.reservei.entities.User;
+import br.com.reservei.entity.User;
 import br.com.reservei.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,10 +24,6 @@ public class UserService {
     }
 
     public Optional<User> getUserById(Long id) {
-        return userRepository.findById(id);
-    }
-
-    public Optional<User> getUserByIdDiferente(Long id) {
         return userRepository.findById(id);
     }
 
