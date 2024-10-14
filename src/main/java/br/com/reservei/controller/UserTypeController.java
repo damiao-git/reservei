@@ -3,6 +3,7 @@ package br.com.reservei.controller;
 import br.com.reservei.dto.UserTypeRecordDto;
 import br.com.reservei.entity.UserType;
 import br.com.reservei.repository.UserTypeRepository;
+import org.apache.catalina.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -53,13 +54,24 @@ public class UserTypeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserType> updateUserType(@PathVariable(value = "id") Integer id, @RequestBody UserTypeRecordDto userTypeRecordDto){
+    public ResponseEntity<Object> updateUserType(@PathVariable(value = "id") Integer id, @RequestBody UserTypeRecordDto userTypeRecordDto){
 
-        var UserTypeNew = new UserType();
+        Optional<UserType> userTypeNew = userTypeRepository.findById(id);
 
-        BeanUtils.copyProperties(userTypeRecordDto, UserTypeNew);
+        if(userTypeNew.isEmpty()){
 
-        return ResponseEntity.status(HttpStatus.OK).body(UserTypeNew);
+            Map<String, String> response = new HashMap<>();
+            response.put("mensagem", "Dado não encontrado");
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+
+        }
+        UserType userItem = userTypeNew.get();
+
+
+        BeanUtils.copyProperties(userTypeRecordDto, userItem);
+
+        return ResponseEntity.status(HttpStatus.OK).body(userTypeRepository.save(userItem));
 
     }
 
