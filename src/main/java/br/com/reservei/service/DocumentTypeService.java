@@ -29,10 +29,6 @@ public class DocumentTypeService {
         return documentTypeRepository.save(documentType);
     }
 
-    public DocumentType documentType(DocumentType documentType){
-        return documentTypeRepository.save(documentType);
-    }
-
     public Optional<DocumentType> getDocumentTypeById(Integer id){
         return documentTypeRepository.findById(id);
     }
