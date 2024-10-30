@@ -31,7 +31,7 @@ public class StateController {
     }
 
     @GetMapping
-    public ResponseEntity<List<State>> getState() {
+    public ResponseEntity<List<State>> getAllStates() {
         List<State> states = stateService.getState();
         return ResponseEntity.status(HttpStatus.OK).body(states);
     }

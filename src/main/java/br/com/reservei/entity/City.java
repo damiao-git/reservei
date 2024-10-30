@@ -1,24 +1,20 @@
 package br.com.reservei.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Entity
-@Table(name = "states")
+@Table(name = "cities")
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
 @Setter
-public class State {
+@Getter
+public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,7 +22,8 @@ public class State {
 
     private String name;
 
-    @OneToMany(mappedBy = "state")
-    @JsonIgnoreProperties("state")
-    private List<City> cities;
+    @ManyToOne
+    @JoinColumn(name = "state_id", nullable = false)
+    @JsonIgnoreProperties("cities")
+    private State state;
 }
