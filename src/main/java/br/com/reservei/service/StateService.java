@@ -25,8 +25,8 @@ public class StateService {
         this.stateRepository = stateRepository;
     }
 
-    public State saveState(State stateRecordDto){
-        return stateRepository.save(stateRecordDto);
+    public State saveState(State state){
+        return stateRepository.save(state);
     }
 
     public Optional<State> getStateById(Integer id){
@@ -52,8 +52,6 @@ public class StateService {
     }
 
     public void deleteState(Integer id){
-        Optional<State> stateOptional = stateRepository.findById(id);
-
         if (!stateRepository.existsById(id)){
             throw new RuntimeException("State not found with id " + id);
         }
