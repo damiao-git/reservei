@@ -4,15 +4,15 @@ package br.com.reservei.controller;
 import br.com.reservei.dto.SubCategoriesRecordDto;
 import br.com.reservei.entity.SubCategories;
 import br.com.reservei.service.SubCategoriesServices;
-import org.springframework.beans.BeanUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
+
 import java.util.Optional;
 
 @RestController
@@ -25,12 +25,9 @@ public class SubCategoryController {
     public SubCategoryController(SubCategoriesServices subCategoriesServices){this.subCategoriesServices = subCategoriesServices; }
 
     @PostMapping
-    public ResponseEntity<SubCategories> saveSubCategory(@RequestBody()SubCategoriesRecordDto subCategoriesRecordDto){
-
-        SubCategories subCategories = new SubCategories();
-        BeanUtils.copyProperties(subCategoriesRecordDto, subCategories);
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(subCategoriesServices.saveSubCategory(subCategories));
+    public ResponseEntity<SubCategories> saveSubCategory(@RequestBody SubCategoriesRecordDto subCategoriesRecordDto) {
+        SubCategories savedSubCategory = subCategoriesServices.saveSubCategory(subCategoriesRecordDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedSubCategory);
     }
 
     @GetMapping()
