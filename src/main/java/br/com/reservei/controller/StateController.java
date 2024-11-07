@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/state")
+@RequestMapping("/api/v1/state")
 public class StateController {
 
     StateService stateService;

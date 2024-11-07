@@ -55,7 +55,7 @@ public class CityService {
         State state = stateRepository.findById(cityRecordDto.state_id())
                 .orElseThrow(() -> new IllegalArgumentException("State not found with id: " + cityRecordDto.state_id()));
 
-        City city = cityRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("City not found with id: " + cityRecordDto.state_id()));
+        City city = cityRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("City not found with id: " + id));
         city.setName(cityRecordDto.name());
         city.setState(state);
 

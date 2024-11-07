@@ -18,8 +18,9 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/city")
+@RequestMapping("/api/v1/city")
 public class CityController {
+
     public CityService cityService;
     public StateService stateService;
 
