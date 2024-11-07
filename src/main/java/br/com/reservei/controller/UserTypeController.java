@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/api/userType")
+@RequestMapping(value = "/api/v1/userType")
 public class UserTypeController {
 
     @Autowired
