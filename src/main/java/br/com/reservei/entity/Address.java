@@ -1,5 +1,6 @@
 package br.com.reservei.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,10 +23,12 @@ public class Address {
 
     @ManyToOne
     @JoinColumn(name = "state_id", nullable = false)
+    @JsonIgnoreProperties("cities")
     private State state;
 
     @ManyToOne
     @JoinColumn(name = "city_id", nullable = false)
+    @JsonIgnoreProperties("state")
     private City city;
 
     private String neighborhood;

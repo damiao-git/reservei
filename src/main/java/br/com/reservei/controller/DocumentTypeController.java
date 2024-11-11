@@ -37,7 +37,7 @@ public class DocumentTypeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DocumentType> getDocumentById(@PathVariable(value = "id") Integer id){
+    public ResponseEntity<DocumentType> getDocumentTypeById(@PathVariable(value = "id") Integer id){
 
         return documentTypeService.getDocumentTypeById(id)
                 .map(ResponseEntity::ok)

@@ -1,6 +1,7 @@
 package br.com.reservei.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -25,6 +26,7 @@ public class SubCategories {
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
+    @JsonIgnoreProperties("subCategories")
     private Category category;
 
 }
